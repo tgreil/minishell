@@ -6,14 +6,16 @@
 #    By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 16:24:07 by tgreil            #+#    #+#              #
-#    Updated: 2018/07/14 00:31:42 by tgreil           ###   ########.fr        #
+#*   Updated: 2018/07/15 19:30:43 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	main.c			\
 			env.c			\
 			prompt.c		\
-			cmd_exec.c
+			cmd_exec.c 		\
+			exec_cmd.c 		\
+			forkator.c
 
 OBJS	= $(addprefix srcs/, $(SRCS:.c=.o))
 

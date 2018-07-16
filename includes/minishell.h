@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/14 02:01:55 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/15 19:56:48 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,20 @@ char			cmd_parser_split_end(char **arg, char *line, int *i);
 int				cmd_parser_split(char **arg, char *line, int *i);
 t_cmd			*cmd_parser(char *line);
 int				cmd_exec(t_env_list *env, char *line);
+
+/*
+**			exec_access.c
+*/
+void			exec_free_paths(char **paths);
+int				exec_chdmod(char *path);
+char			**exec_get_paths(t_env_list *env);
+int				exec_direct_access(t_cmd *cmd, t_env_list *env);
+int				exec_access(t_cmd *cmd, t_env_list *env);
+
+/*
+**			forkator.c
+*/
+char			**forkator_env(t_env_list *env);
+int				forkator(t_cmd *cmd, t_env_list *env, char *path);
 
 #endif

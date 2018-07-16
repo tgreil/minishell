@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/14 02:18:20 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/15 20:10:45 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,23 @@ t_cmd		*cmd_parser(char *line)
 int			cmd_exec(t_env_list *env, char *line)
 {
 	t_cmd	*cmd;
+	t_cmd	*next;
+	int		i;
 
-env +=1;// a changer ahahahahahahh
 	if (!(cmd = cmd_parser(line)))
 		return (EXIT_ERROR);
 	while (cmd)
 	{
+		i = 0;
 		if (cmd->arg)
 		{
-			
+		//	builtin
+			exec_access(cmd, env);
 		}
-		cmd = cmd->next;//free et tout
+		next = cmd->next;
+		free(cmd->arg);
+		free(cmd);
+		cmd = next;
 	}
 	return (EXIT_SUCCESS);
 }
