@@ -6,7 +6,7 @@
 /*   By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 15:31:13 by tgreil            #+#    #+#             */
-/*   Updated: 2018/07/18 19:13:22 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/18 19:21:41 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int		cmd_parser_interpret(t_cmd *cmd, t_env_list *env)
 		cmd_parser_echaper(s);
 		if (!(cmd->arg[i] = cmd_parser_replace(ft_strdup(s), env)))
 			return (EXIT_ERROR);
-		ft_printf("%s\n", cmd->arg[i]);
 		i++;
 	}
 	return (EXIT_SUCCESS);

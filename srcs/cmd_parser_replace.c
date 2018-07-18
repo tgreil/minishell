@@ -6,7 +6,7 @@
 /*   By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 17:39:13 by tgreil            #+#    #+#             */
-/*   Updated: 2018/07/18 19:10:54 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/18 19:29:47 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*cmd_parser_replace_var(char *s, t_env_list *env, int i)
 	ft_strncpy(new, s, i);
 	if (replace)
 		ft_strcat(new, replace);
-	ft_strcat(new, s + i + var_len);
+	ft_strcat(new, s + i + var_len + 1);
 	free(s);
 	return (new);
 }
@@ -52,6 +52,7 @@ char		*cmd_parser_replace(char *s, t_env_list *env)
 	int		i;
 
 	i = 0;
+	ft_printf("REPLACE: |{red}%s{eoc}|\n", s);
 	while (s[i])
 	{
 		if (s[i] == '$' && (!i || s[i - 1] != '\\'))

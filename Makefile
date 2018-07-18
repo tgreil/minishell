@@ -6,7 +6,7 @@
 #    By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 16:24:07 by tgreil            #+#    #+#              #
-#    Updated: 2018/07/18 17:37:51 by tgreil           ###   ########.fr        #
+#    Updated: 2018/07/18 19:30:44 by tgreil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ MAKELIB	= make -C libft/
 
 LIB	= libft/libft.a
 
-CFLAGS	= -W -Wall -Wextra -Werror
+CFLAGS	= -W -Wall -Wextra -Werror -g3
 CFLAGS	+= -Iincludes/ -Ilibft/includes/
 
 LDFLAGS	=  $(LIBS)
