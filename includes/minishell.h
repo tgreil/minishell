@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 14:39:14 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 15:17:06 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,12 @@ int				builtin_search(t_cmd *cmd, t_env_list *env);
 **			builtin_echo.c
 */
 int			builtin_echo(t_cmd *cmd, t_env_list *env);
+
+/*
+**			builtin_env,c
+*/
+char		**builtin_env_create_tmp(t_cmd *cmd);
+int			builtin_env_tmp(t_cmd *cmd);
+int			builtin_env(t_cmd *cmd, t_env_list *env);
 
 #endif

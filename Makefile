@@ -6,18 +6,19 @@
 #    By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 16:24:07 by tgreil            #+#    #+#              #
-#*   Updated: 2018/07/18 14:38:08 by                  ###   ########.fr       *#
+#*   Updated: 2018/07/18 14:46:59 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	main.c				\
-			env.c				\
-			prompt.c			\
-			cmd_exec.c 			\
-			exec_cmd.c 			\
-			forkator.c 			\
-			builtin_search.c	\
-			builtin_echo.c		\
+SRCS	=	main.c					\
+			env.c					\
+			prompt.c				\
+			cmd_exec.c 				\
+			exec_cmd.c 				\
+			forkator.c 				\
+			builtin_search.c		\
+			builtin_echo.c			\
+			builtin_env.c
 
 OBJS	= $(addprefix srcs/, $(SRCS:.c=.o))
 
