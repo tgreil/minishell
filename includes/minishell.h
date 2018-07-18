@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 13:46:56 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 14:26:53 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char			**forkator_env(t_env_list *env);
 int				forkator(t_cmd *cmd, t_env_list *env, char *path);
 
 /*
-**			builtin_struct.c
+**			builtin_search.c
 */
 void			builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list*));
 int				builtin_search(t_cmd *cmd, t_env_list *env);

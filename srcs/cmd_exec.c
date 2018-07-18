@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 13:45:07 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 14:19:27 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,7 @@ int			cmd_exec(t_env_list *env, char *line)
 	{
 		i = 0;
 		if (cmd->arg)
-		{
 			builtin_search(cmd, env);
-		//	exec_access(cmd, env);
-		}
 		free(cmd->arg);
 		next = cmd->next;
 		free(cmd);
