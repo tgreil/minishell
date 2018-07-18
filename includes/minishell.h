@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/15 19:56:48 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 13:46:56 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef struct			s_cmd
 	char				**arg;
 	struct s_cmd		*next;
 }						t_cmd;
+
+typedef struct			s_builtin
+{
+	char				*name;
+	int					pos;
+}						t_builtin;
 
 /*
 **			main.c
@@ -73,5 +79,11 @@ int				exec_access(t_cmd *cmd, t_env_list *env);
 */
 char			**forkator_env(t_env_list *env);
 int				forkator(t_cmd *cmd, t_env_list *env, char *path);
+
+/*
+**			builtin_struct.c
+*/
+void			builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list*));
+int				builtin_search(t_cmd *cmd, t_env_list *env);
 
 #endif

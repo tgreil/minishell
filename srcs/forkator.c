@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 19:14:27 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/15 20:18:03 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 12:01:33 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int			forkator(t_cmd *cmd, t_env_list *env, char *path)
 		exit(ret);
 	}
 	exec_free_paths(tab_env);
-	//env_struct->paths = ft_free_env_paths(env_struct->paths);
 	return (EXIT_SUCCESS);
 }
 
