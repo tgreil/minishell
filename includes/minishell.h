@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 15:17:06 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 15:45:13 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ t_cmd			*cmd_parser(char *line);
 int				cmd_exec(t_env_list *env, char *line);
 
 /*
+**			cmd_parser.c
+*/
+int				cmd_parser_interpret(t_cmd *cmd, t_env_list *env);
+
+/*
 **			exec_access.c
 */
 void			exec_free_paths(char **paths);
@@ -89,13 +94,13 @@ int				builtin_search(t_cmd *cmd, t_env_list *env);
 /*
 **			builtin_echo.c
 */
-int			builtin_echo(t_cmd *cmd, t_env_list *env);
+int				builtin_echo(t_cmd *cmd, t_env_list *env);
 
 /*
 **			builtin_env,c
 */
-char		**builtin_env_create_tmp(t_cmd *cmd);
-int			builtin_env_tmp(t_cmd *cmd);
-int			builtin_env(t_cmd *cmd, t_env_list *env);
+char			**builtin_env_create_tmp(t_cmd *cmd);
+int				builtin_env_tmp(t_cmd *cmd);
+int				builtin_env(t_cmd *cmd, t_env_list *env);
 
 #endif
