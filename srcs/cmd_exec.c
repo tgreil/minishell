@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 15:42:29 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/18 16:33:26 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int			cmd_exec(t_env_list *env, char *line)
 		cmd_parser_interpret(cmd, env);
 		if (cmd->arg)
 			builtin_search(cmd, env);
+		while (cmd->arg[i])
+			free(cmd->arg[i++]);
 		free(cmd->arg);
 		next = cmd->next;
 		free(cmd);

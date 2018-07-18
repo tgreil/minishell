@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 15:45:13 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/18 18:04:23 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int				main(int ac, char **av, char **env);
 /*
 **			env.c
 */
+char			*env_get(t_env_list *env, char *s);
 t_env_list		*env_init(char **env);
 void			env_print(t_env_list *env);
 void			env_destroy(t_env_list *env);
@@ -61,6 +62,7 @@ void			prompt_print();
 **			cmd_exec.c
 */
 char			cmd_parser_split_end(char **arg, char *line, int *i);
+int				cmd_parser_split_increment(char *line, int *i);
 int				cmd_parser_split(char **arg, char *line, int *i);
 t_cmd			*cmd_parser(char *line);
 int				cmd_exec(t_env_list *env, char *line);
@@ -69,6 +71,11 @@ int				cmd_exec(t_env_list *env, char *line);
 **			cmd_parser.c
 */
 int				cmd_parser_interpret(t_cmd *cmd, t_env_list *env);
+
+/*
+**			cmd_parser_replace.c
+*/
+char			*cmd_parser_replace(char *s, t_env_list *env);
 
 /*
 **			exec_access.c
