@@ -6,13 +6,13 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:32:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 14:47:56 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 20:47:27 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_builtin builtin[6]=
+t_builtin builtin[6] =
 {
 	{"cd", 1},
 	{"echo", 2},
@@ -27,9 +27,9 @@ void	builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list*))
 //	pf[0] = &builtin_cd;
 	pf[1] = &builtin_echo;
 	pf[2] = &builtin_env;
-/*	pf[3] = &builtin_setenv;
-	pf[4] = &builtin_unsetenv;
-*/	pf[5] = &exec_access;
+	pf[3] = &builtin_setenv;
+//	pf[4] = &builtin_unsetenv;
+//	pf[5] = &exec_access;
 }
 
 int		builtin_search(t_cmd *cmd, t_env_list *env)

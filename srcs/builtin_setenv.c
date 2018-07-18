@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:59:17 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 19:38:56 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 20:45:21 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,22 @@ size_t		builtin_setenv_strlen_envname(char *env)
 	i = 0;
 	while (env[i] && env[i] != '=')
 		i++;
-	return (i - 1);
+	return (i);
 }
 
-t_env_list *builtin_setenv_new_env(char *env)
+t_env_list	*builtin_setenv_new_env(char *new_env, t_env_list *env)
 {
 	t_env_list		*new;
+	t_env_list		*list;
 
+	list = env;
 	if (!(new = ft_memalloc(sizeof(t_env_list))))
 		return (NULL);
-	if (!(new->data = ft_strdup(env)))
+	if (!(new->data = ft_strdup(new_env)))
 		return (NULL);
+	while (list->next)
+		list = list->next;
+	list->next = new;
 	return (new);
 }
 
@@ -58,10 +63,10 @@ int			builtin_setenv(t_cmd *cmd, t_env_list *env)
 		}
 		else
 		{
-			if (!(lst->next = builtin_setenv_new_env(cmd->arg[i])))
+			if (!(builtin_setenv_new_env(cmd->arg[i], env)))
 				return (EXIT_ERROR);
 		}
+		i++;
 	}
-
 	return (EXIT_SUCCESS);
 }

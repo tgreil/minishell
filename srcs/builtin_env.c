@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:47:14 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 18:35:09 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 20:46:33 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,9 @@ int			builtin_env(t_cmd *cmd, t_env_list *env)
 			return (builtin_env_launcher(cmd));
 		else
 		{
-			//msg d'erreur, commande inconnu, usage?
+//msg d'erreur, commande inconnu, usage?
 			return (EXIT_SUCCESS);
 		}
-
 	}
 	while (list)
 	{
