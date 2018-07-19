@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 18:04:23 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/18 20:33:34 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,17 @@ int				builtin_echo(t_cmd *cmd, t_env_list *env);
 /*
 **			builtin_env,c
 */
-char			**builtin_env_create_tmp(t_cmd *cmd);
+void			builtin_env_free(t_cmd *cmd, t_env_list *env_l, char **env_tab);
+t_cmd			*builtin_create_cmd_tmp(t_cmd *cmd);
+char			**builtin_env_create_env_tmp(t_cmd *cmd);
 int				builtin_env_tmp(t_cmd *cmd);
 int				builtin_env(t_cmd *cmd, t_env_list *env);
+
+/*
+**			builtin_setenv.c
+*/
+size_t			builtin_setenv_strlen_envname(char *env);
+t_env_list		*builtin_setenv_new_env(char *new_env, t_env_list *env);
+int				builtin_setenv(t_cmd *cmd,t_env_list *env);
 
 #endif

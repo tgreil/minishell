@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:00:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/15 19:55:24 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 19:47:37 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int			exec_chmod(char *path)
 
 char		**exec_get_paths(t_env_list *env)
 {
-	char **paths;
-	t_env_list *lst;
+	char		**paths;
+	t_env_list	*lst;
 
 	lst = env;
-	while (lst && ft_strncmp("PATH=", lst->data, 5))
+	paths = NULL;
+	while (lst && lst->data && ft_strncmp("PATH=", lst->data, 5))
 		lst = lst->next;
-	if (!lst || !(paths = ft_strsplit(&lst->data[5], ':')))
+	if (!lst || !lst->data || !(paths = ft_strsplit(&lst->data[5], ':')))
 		return (NULL);
 	return (paths);
 }
@@ -76,9 +77,8 @@ int			exec_access(t_cmd *cmd, t_env_list *env)
 	struct stat		stat;
 
 	i = 0;
-	if (!(paths = exec_get_paths(env)))
-		return (EXIT_ERROR);
-	while (paths[i])
+	paths = exec_get_paths(env);
+	while (paths && paths[i])
 	{
 		if ((ft_strlen(paths[i]) + ft_strlen(cmd->arg[0]) + 1) < PATH_MAX)
 		{
@@ -97,6 +97,7 @@ int			exec_access(t_cmd *cmd, t_env_list *env)
 		}
 		i++;
 	}
-	exec_free_paths(paths);
+	if (paths)
+		exec_free_paths(paths);
 	return (exec_direct_access(cmd, env));
 }

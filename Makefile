@@ -6,7 +6,11 @@
 #    By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 16:24:07 by tgreil            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2018/07/18 19:30:44 by tgreil           ###   ########.fr        #
+=======
+#*   Updated: 2018/07/18 20:34:54 by                  ###   ########.fr       *#
+>>>>>>> 861493b9e8719cef857386bec3b9953cb29c9f57
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +24,8 @@ SRCS	=	main.c					\
 			forkator.c 				\
 			builtin_search.c		\
 			builtin_echo.c			\
-			builtin_env.c
+			builtin_env.c 			\
+			builtin_setenv.c
 
 OBJS	= $(addprefix srcs/, $(SRCS:.c=.o))
 

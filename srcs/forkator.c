@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 19:14:27 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 12:01:33 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/18 20:43:27 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char		**forkator_env(t_env_list *env)
 			return (NULL);
 		tab_env[i] = 0;
 		i = 0;
-		while (lst)
+		while (lst && lst->data)
 		{
 			if (!(tab_env[i] = ft_strdup(lst->data)))
 				return (NULL);
@@ -63,4 +63,3 @@ int			forkator(t_cmd *cmd, t_env_list *env, char *path)
 	exec_free_paths(tab_env);
 	return (EXIT_SUCCESS);
 }
-
