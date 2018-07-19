@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:32:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 20:47:27 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/19 13:43:17 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list*))
 	pf[2] = &builtin_env;
 	pf[3] = &builtin_setenv;
 //	pf[4] = &builtin_unsetenv;
-//	pf[5] = &exec_access;
+	pf[5] = &exec_access;
 }
 
 int		builtin_search(t_cmd *cmd, t_env_list *env)
