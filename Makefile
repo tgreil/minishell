@@ -6,7 +6,7 @@
 #    By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 16:24:07 by tgreil            #+#    #+#              #
-#*   Updated: 2018/07/20 12:21:20 by                  ###   ########.fr       *#
+#*   Updated: 2018/07/20 16:46:40 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRCS	=	main.c					\
 			builtin_echo.c			\
 			builtin_env.c 			\
 			builtin_setenv.c		\
-			builtin_unsetenv.c
+			builtin_unsetenv.c 		\
+			builtin_cd.c 			\
+			builtin_cd_envmodifier.c
 
 OBJS	= $(addprefix srcs/, $(SRCS:.c=.o))
 
@@ -48,7 +50,7 @@ LDFLAGS	=  $(LIBS)
 $(PROJECT):	$(LIB) $(NAME)
 
 $(NAME): 	$(OBJS) Makefile
-	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) -fsanitize=address
+	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) #-fsanitize=address
 
 $(LIB):
 	$(MAKELIB)

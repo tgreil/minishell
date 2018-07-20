@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:32:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/20 12:18:35 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/20 13:14:19 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_builtin builtin[6] =
 
 void	builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list**))
 {
-//	pf[0] = &builtin_cd;
+	pf[0] = &builtin_cd;
 	pf[1] = &builtin_echo;
 	pf[2] = &builtin_env;
 	pf[3] = &builtin_setenv;

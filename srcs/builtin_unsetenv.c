@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/19 13:52:31 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/19 16:08:53 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/20 13:15:57 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int			builtin_unsetenv(t_cmd *cmd, t_env_list **env)
 		{
 			if (!prev)
 				*env = lst->next;
-			env_print(*env);
 			builtin_unsetenv_remove(lst, prev);
 		}
 		i++;

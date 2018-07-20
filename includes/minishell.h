@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/20 12:16:32 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/20 16:44:50 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,20 @@ int				builtin_setenv(t_cmd *cmd, t_env_list **env);
 void			builtin_unsetenv_remove(t_env_list *current, t_env_list *prev);
 int				builtin_unsetenv(t_cmd *cmd, t_env_list **env);
 
+/*
+**			builtin_cd.c
+*/
+int				builtin_cd_reverse(t_env_list **env, char *current_dir);
+int				builtin_cd_absolute_path(t_cmd *cmd, t_env_list **env,
+		char *current_dir);
+int				builtin_cd_home(t_env_list **env, char *current_dir);
+int				builtin_cd(t_cmd *cmd, t_env_list **env);
+
+/*
+**			builtin_cd_envmodifier.c
+*/
+int				builtin_cd_create_env(t_env_list **env, char *envname,
+		char *path);
+int				builtin_cd_change_env(t_env_list **env, char *name,
+		char *path);
 #endif
