@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:47:14 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 20:46:33 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/20 12:20:02 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,18 @@ int			builtin_env_launcher(t_cmd *cmd)
 	env_list_tmp = env_init(env_tmp);
 	cmd_tmp = builtin_create_cmd_tmp(cmd);
 	if (cmd_tmp->arg[0])
-		builtin_search(cmd_tmp, env_list_tmp);
+		builtin_search(cmd_tmp, &env_list_tmp);
 	builtin_env_free(cmd_tmp, env_list_tmp, env_tmp);
 	return (EXIT_SUCCESS);
 }
 
-int			builtin_env(t_cmd *cmd, t_env_list *env)
+int			builtin_env(t_cmd *cmd, t_env_list **env)
 {
+	int			i;
 	t_env_list	*list;
 
-	list = env;
+	i = 0;
+	list = *env;
 	if (cmd->arg[1])
 	{
 		if (!ft_strcmp(cmd->arg[1], "-i"))

@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:32:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/19 13:43:17 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/20 12:18:35 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@ t_builtin builtin[6] =
 	{"echo", 2},
 	{"env", 3},
 	{"setenv", 4},
-	{"ensetenv", 5},
+	{"unsetenv", 5},
 	{0, 0}
 };
 
-void	builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list*))
+void	builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list**))
 {
 //	pf[0] = &builtin_cd;
 	pf[1] = &builtin_echo;
 	pf[2] = &builtin_env;
 	pf[3] = &builtin_setenv;
-//	pf[4] = &builtin_unsetenv;
+	pf[4] = &builtin_unsetenv;
 	pf[5] = &exec_access;
 }
 
-int		builtin_search(t_cmd *cmd, t_env_list *env)
+int		builtin_search(t_cmd *cmd, t_env_list **env)
 {
 	int		i;
-	int		(*pf[6])(t_cmd*, t_env_list*);
+	int		(*pf[6])(t_cmd*, t_env_list**);
 
 	i = 0;
 	builtin_initiate_tab(pf);

@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:00:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 19:47:37 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/19 15:52:06 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			exec_direct_access(t_cmd *cmd, t_env_list *env)
 	return (0);
 }
 
-int			exec_access(t_cmd *cmd, t_env_list *env)
+int			exec_access(t_cmd *cmd, t_env_list **env)
 {
 	char			path_exec[PATH_MAX];
 	char			**paths;
@@ -77,7 +77,7 @@ int			exec_access(t_cmd *cmd, t_env_list *env)
 	struct stat		stat;
 
 	i = 0;
-	paths = exec_get_paths(env);
+	paths = exec_get_paths(*env);
 	while (paths && paths[i])
 	{
 		if ((ft_strlen(paths[i]) + ft_strlen(cmd->arg[0]) + 1) < PATH_MAX)
@@ -90,7 +90,7 @@ int			exec_access(t_cmd *cmd, t_env_list *env)
 					|| !access(path_exec, stat.st_gid))
 					&& exec_chmod(path_exec))
 			{
-				forkator(cmd, env, path_exec);
+				forkator(cmd, *env, path_exec);
 				exec_free_paths(paths);
 				return (EXIT_SUCCESS);
 			}
@@ -99,5 +99,5 @@ int			exec_access(t_cmd *cmd, t_env_list *env)
 	}
 	if (paths)
 		exec_free_paths(paths);
-	return (exec_direct_access(cmd, env));
+	return (exec_direct_access(cmd, *env));
 }

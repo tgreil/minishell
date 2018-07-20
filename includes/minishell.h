@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/18 20:33:34 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/20 12:16:32 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char			cmd_parser_split_end(char **arg, char *line, int *i);
 int				cmd_parser_split_increment(char *line, int *i);
 int				cmd_parser_split(char **arg, char *line, int *i);
 t_cmd			*cmd_parser(char *line);
-int				cmd_exec(t_env_list *env, char *line);
+int				cmd_exec(t_env_list **env, char *line);
 
 /*
 **			cmd_parser.c
@@ -86,7 +86,7 @@ void			exec_free_paths(char **paths);
 int				exec_chdmod(char *path);
 char			**exec_get_paths(t_env_list *env);
 int				exec_direct_access(t_cmd *cmd, t_env_list *env);
-int				exec_access(t_cmd *cmd, t_env_list *env);
+int				exec_access(t_cmd *cmd, t_env_list **env);
 
 /*
 **			forkator.c
@@ -97,13 +97,13 @@ int				forkator(t_cmd *cmd, t_env_list *env, char *path);
 /*
 **			builtin_search.c
 */
-void			builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list*));
-int				builtin_search(t_cmd *cmd, t_env_list *env);
+void			builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list**));
+int				builtin_search(t_cmd *cmd, t_env_list **env);
 
 /*
 **			builtin_echo.c
 */
-int				builtin_echo(t_cmd *cmd, t_env_list *env);
+int				builtin_echo(t_cmd *cmd, t_env_list **env);
 
 /*
 **			builtin_env,c
@@ -112,13 +112,19 @@ void			builtin_env_free(t_cmd *cmd, t_env_list *env_l, char **env_tab);
 t_cmd			*builtin_create_cmd_tmp(t_cmd *cmd);
 char			**builtin_env_create_env_tmp(t_cmd *cmd);
 int				builtin_env_tmp(t_cmd *cmd);
-int				builtin_env(t_cmd *cmd, t_env_list *env);
+int				builtin_env(t_cmd *cmd, t_env_list **env);
 
 /*
 **			builtin_setenv.c
 */
 size_t			builtin_setenv_strlen_envname(char *env);
 t_env_list		*builtin_setenv_new_env(char *new_env, t_env_list *env);
-int				builtin_setenv(t_cmd *cmd,t_env_list *env);
+int				builtin_setenv(t_cmd *cmd, t_env_list **env);
+
+/*
+**			builtin_unsetenv.c
+*/
+void			builtin_unsetenv_remove(t_env_list *current, t_env_list *prev);
+int				builtin_unsetenv(t_cmd *cmd, t_env_list **env);
 
 #endif

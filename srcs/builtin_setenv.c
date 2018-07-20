@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:59:17 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 20:45:21 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/19 15:49:43 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_env_list	*builtin_setenv_new_env(char *new_env, t_env_list *env)
 	return (new);
 }
 
-int			builtin_setenv(t_cmd *cmd, t_env_list *env)
+int			builtin_setenv(t_cmd *cmd, t_env_list **env)
 {
 	t_env_list		*lst;
 	int				i;
@@ -47,14 +47,10 @@ int			builtin_setenv(t_cmd *cmd, t_env_list *env)
 	i = 1;
 	while (cmd->arg[i] && ft_strchr(cmd->arg[i], '=') && cmd->arg[i][0] != '=')
 	{
-		lst = env;
+		lst = *env;
 		len = builtin_setenv_strlen_envname(cmd->arg[i]);
-		while (lst)
-		{
-			if (!ft_strncmp(cmd->arg[i], lst->data, len))
-				break ;
+		while (lst && ft_strncmp(cmd->arg[i], lst->data, len))
 			lst = lst->next;
-		}
 		if (lst)
 		{
 			free(lst->data);
@@ -63,7 +59,7 @@ int			builtin_setenv(t_cmd *cmd, t_env_list *env)
 		}
 		else
 		{
-			if (!(builtin_setenv_new_env(cmd->arg[i], env)))
+			if (!(builtin_setenv_new_env(cmd->arg[i], *env)))
 				return (EXIT_ERROR);
 		}
 		i++;

@@ -6,13 +6,13 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:35:04 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/18 14:53:10 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/19 15:48:48 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			builtin_echo(t_cmd *cmd, t_env_list *env)
+int			builtin_echo(t_cmd *cmd, t_env_list **env)
 {
 	int i;
 
