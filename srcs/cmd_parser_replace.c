@@ -27,18 +27,18 @@ char		*cmd_parser_replace_var(char *s, t_env_list *env, int i)
 	char	*replace;
 	char	*new;
 	int		var_len;
-	int		my_i;
 
-	my_i = 0;
 	var_len = cmd_parser_replace_size(s + i + 1);
 	if (!(new = malloc(var_len + 1)))
 		return (NULL);
-	ft_strncpy(new, s + i + 1, var_len);
+	new = ft_strncpy(new, s + i + 1, var_len);
+	new[var_len] = 0;
 	replace = env_get(env, new);
 	free(new);
 	if (!(new = malloc(ft_strlen(s) + (replace ? ft_strlen(replace) : 0))))
 		return (NULL);
 	ft_strncpy(new, s, i);
+	new[i] = 0;
 	if (replace)
 		ft_strcat(new, replace);
 	ft_strcat(new, s + i + var_len + 1);

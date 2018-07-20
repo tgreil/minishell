@@ -19,7 +19,8 @@ char		cmd_parser_split_end(char **arg, char *line, int *i)
 	c = line[*i];
 	if (arg)
 		line[*i] = '\0';
-	(*i)++;
+	if (c)
+		(*i)++;
 	return (c);
 }
 
@@ -79,6 +80,9 @@ t_cmd		*cmd_parser(char *line)
 	new->arg[size] = NULL;
 	i = 0;
 	cmd_parser_split(new->arg, line, &i);
+	while (size-- > 0)
+		if (!(new->arg[size] = ft_strdup(new->arg[size])))
+			return (NULL);
 	if (line[i])
 		if (!(new->next = cmd_parser(line + i)))
 			return (NULL);

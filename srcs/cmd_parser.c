@@ -59,7 +59,7 @@ int		cmd_parser_interpret(t_cmd *cmd, t_env_list *env)
 		s = cmd->arg[i];
 		cmd_parser_interpret_quot(s);
 		cmd_parser_echaper(s);
-		if (!(cmd->arg[i] = cmd_parser_replace(ft_strdup(s), env)))
+		if (!(cmd->arg[i] = cmd_parser_replace(s, env)))
 			return (EXIT_ERROR);
 		i++;
 	}

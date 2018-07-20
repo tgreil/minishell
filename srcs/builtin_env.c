@@ -98,10 +98,8 @@ int			builtin_env_launcher(t_cmd *cmd)
 
 int			builtin_env(t_cmd *cmd, t_env_list *env)
 {
-	int			i;
 	t_env_list	*list;
 
-	i = 0;
 	list = env;
 	if (cmd->arg[1])
 	{
