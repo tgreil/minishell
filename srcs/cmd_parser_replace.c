@@ -46,13 +46,30 @@ char		*cmd_parser_replace_var(char *s, t_env_list *env, int i)
 	return (new);
 }
 
+char		*cmd_parser_replace_home(char *s, t_env_list *env)
+{
+	char	*replace;
+	char	*new;
+
+	if (!(replace = env_get(env, "HOME")))
+		return (s);
+	if (!(new = malloc(ft_strlen(s) + ft_strlen(replace))))
+		return (NULL);
+	new = ft_strcpy(new, replace);
+	new = ft_strcat(new, s + 1);
+	free(s);
+	return (new);
+}
+
 char		*cmd_parser_replace(char *s, t_env_list *env)
 {
 	char	*new;
 	int		i;
 
 	i = 0;
-	ft_printf("REPLACE: |{red}%s{eoc}|\n", s);
+	if (s[i] == '~')
+		if (!(s = cmd_parser_replace_home(s, env)))
+			return (NULL);
 	while (s[i])
 	{
 		if (s[i] == '$' && (!i || s[i - 1] != '\\'))
