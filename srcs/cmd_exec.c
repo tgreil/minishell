@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/20 12:13:27 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 16:06:34 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int			cmd_parser_split(char **arg, char *line, int *i)
 	{
 		while (line[*i] && (line[*i] == ' ' || line[*i] == '\t'))
 			(*i)++;
-		if (line[*i] && arg)
+		if (line[*i] && line[*i] != ';' && arg)
 			arg[nb_words] = line + *i;
-		if (line[*i])
+		if (line[*i] && line[*i] != ';')
 			nb_words++;
 		cmd_parser_split_increment(line, i);
 		c = cmd_parser_split_end(arg, line, i);
