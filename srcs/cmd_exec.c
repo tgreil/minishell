@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/21 17:00:17 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/21 17:19:25 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int			cmd_exec(t_env_list **env, char *line)
 	t_cmd	*next;
 	int		i;
 
+	if (!ft_strcmp(line, "exit"))
+		return (EXIT_EXIT);
 	if (!(cmd = cmd_parser(line)))
 		return (EXIT_ERROR);
 	while (cmd)
