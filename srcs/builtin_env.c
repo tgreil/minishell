@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:47:14 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/20 12:20:02 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 15:51:43 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,12 @@ int			builtin_env(t_cmd *cmd, t_env_list **env)
 			return (builtin_env_launcher(cmd));
 		else
 		{
-//msg d'erreur, commande inconnu, usage?
+			ft_printf("!2!env: illegal option %s\nusage : env [-i]\
+[name=value ...] [utility [argument ...]]\n", cmd->arg[1]);
 			return (EXIT_SUCCESS);
 		}
 	}
-	while (list)
+	while (list && list->data)
 	{
 		ft_printf("%s\n", list->data);
 		list = list->next;

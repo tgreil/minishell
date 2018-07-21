@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:00:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/19 15:52:06 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 15:54:23 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			exec_direct_access(t_cmd *cmd, t_env_list *env)
 			|| !access(cmd->arg[0], stat.st_gid))
 			&& exec_chmod(cmd->arg[0]))
 		return (forkator(cmd, env, cmd->arg[0]));
-	return (0);
+	return (error("minishell:", "command not found:", cmd->arg[0], EXIT_SUCCESS));
 }
 
 int			exec_access(t_cmd *cmd, t_env_list **env)

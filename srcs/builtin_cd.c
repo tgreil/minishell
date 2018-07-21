@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/20 13:10:26 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/21 15:22:59 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/21 15:43:51 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int			builtin_cd_home(t_env_list **env, char *current_dir)
 	lst = *env;
 	while (lst && lst->data && ft_strncmp(lst->data, "HOME=", 5))
 		lst = lst->next;
-//	if (!lst)
-//	error-> cd: HOME not set
+	if (!lst || !lst->data)
+		return (error("cd:", "HOME", "not set", EXIT_SUCCESS));
 	if (!chdir(&lst->data[5]))
 	{
 		if ((builtin_cd_change_env(env, "OLDPWD=", current_dir)) < 0)
@@ -105,7 +105,7 @@ int			builtin_cd(t_cmd *cmd, t_env_list **env)
 	char		*ptr;
 
 	if (!(ptr = getcwd(current_dir, PATH_MAX)))
-		return (EXIT_SUCCESS); //mettre un message d'erreur? exit? NOPE
+		return (EXIT_SUCCESS); //mettre un message d'erreur? exit? NOPE ? fonction autorise? OUI
 	else if (!cmd->arg[1])
 		return (builtin_cd_home(env, current_dir));
 	else if (cmd->arg[1][0] == '/')
