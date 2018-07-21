@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/21 16:59:00 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/21 17:00:17 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,17 @@ char		cmd_parser_split_end(char **arg, char *line, int *i)
 
 int			cmd_parser_split_increment(char *line, int *i, char **arg)
 {
-//ft_printf("ON commance : %d\n", *i);
 	while (line[*i] && line[*i] != ' ' &&
 		line[*i] != '\t' && line[*i] != ';')
 	{
-	//ft_printf("ON AVANCE : %d\n", *i);
 		if (line[*i] == '"' && (!i || line[(*i - 1)] != '\\'))
 		{
 			(*i)++;
-			//ft_printf("ON TRICK : %d\n", *i);
 			while (line[*i] && (line[*i] != '"'
 							|| (line[*i] == '"' && line[(*i - 1)] == '\\')))
-							{
-							//ft_printf("ON TRICK VRAIMENT DE FOU : %d => %c\n", *i, line[*i]);
 				(*i)++;
-			}
 			if (!line[*i] && !arg)
 			{
-				//ft_printf("ON BUG EN : %d\n", *i);
 				ft_printf("!2!Minishell error: parser: missing \"\n");
 				return (EXIT_ERROR);
 			}
