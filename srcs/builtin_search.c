@@ -6,40 +6,25 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:32:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/20 13:14:19 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 17:46:34 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_builtin builtin[6] =
-{
-	{"cd", 1},
-	{"echo", 2},
-	{"env", 3},
-	{"setenv", 4},
-	{"unsetenv", 5},
-	{0, 0}
-};
-
-void	builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list**))
-{
-	pf[0] = &builtin_cd;
-	pf[1] = &builtin_echo;
-	pf[2] = &builtin_env;
-	pf[3] = &builtin_setenv;
-	pf[4] = &builtin_unsetenv;
-	pf[5] = &exec_access;
-}
-
 int		builtin_search(t_cmd *cmd, t_env_list **env)
 {
-	int		i;
-	int		(*pf[6])(t_cmd*, t_env_list**);
-
-	i = 0;
-	builtin_initiate_tab(pf);
-	while (builtin[i].name && ft_strcmp(cmd->arg[0], builtin[i].name))
-		i++;
-	return (pf[i](cmd, env));
+	if (!cmd || !cmd->arg[0])
+		return (-1);
+	else if (!ft_strcmp(cmd->arg[0], "echo"))
+		return (builtin_echo(cmd, env));
+	else if (!ft_strcmp(cmd->arg[0], "cd"))
+		return (builtin_cd(cmd, env));
+	else if (!ft_strcmp(cmd->arg[0], "setenv"))
+		return (builtin_setenv(cmd, env));
+	else if (!ft_strcmp(cmd->arg[0], "unsetenv"))
+		return (builtin_unsetenv(cmd, env));
+	else if (!ft_strcmp(cmd->arg[0], "env"))
+		return (builtin_env(cmd, env));
+	return (exec_access(cmd, env));
 }

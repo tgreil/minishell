@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/20 13:10:26 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/21 15:43:51 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 17:49:48 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int			builtin_cd_reverse(t_env_list **env, char *current_dir)
 	lst = *env;
 	while (lst && lst->data && ft_strncmp(lst->data, "OLDPWD=", 7))
 		lst = lst->next;
-	if (!lst)
-		ft_printf("cd: OLDPWD not set\n"); //achanger vers le fd2
+	if (!lst || !lst->data)
+		return (error("cd:", " OLDPWD", "not set", EXIT_SUCCESS));
 	else
 	{
 		if (!chdir(&lst->data[7]))
@@ -86,7 +86,7 @@ int			builtin_cd_home(t_env_list **env, char *current_dir)
 	while (lst && lst->data && ft_strncmp(lst->data, "HOME=", 5))
 		lst = lst->next;
 	if (!lst || !lst->data)
-		return (error("cd:", "HOME", "not set", EXIT_SUCCESS));
+		return (error("cd:", " HOME", "not set", EXIT_SUCCESS));
 	if (!chdir(&lst->data[5]))
 	{
 		if ((builtin_cd_change_env(env, "OLDPWD=", current_dir)) < 0)
@@ -105,7 +105,7 @@ int			builtin_cd(t_cmd *cmd, t_env_list **env)
 	char		*ptr;
 
 	if (!(ptr = getcwd(current_dir, PATH_MAX)))
-		return (EXIT_SUCCESS); //mettre un message d'erreur? exit? NOPE ? fonction autorise? OUI
+		return (EXIT_SUCCESS);
 	else if (!cmd->arg[1])
 		return (builtin_cd_home(env, current_dir));
 	else if (cmd->arg[1][0] == '/')

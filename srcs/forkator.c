@@ -6,11 +6,30 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 19:14:27 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/20 13:19:05 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 18:01:56 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char		**forkator_create_env(t_env_list *env, char **tab_env, int i)
+{
+	t_env_list		*lst;
+
+	lst = env;
+	if (!(tab_env = ft_memalloc(sizeof(char*) * (i + 1))))
+		return (NULL);
+	tab_env[i] = 0;
+	i = 0;
+	while (lst && lst->data)
+	{
+		if (!(tab_env[i] = ft_strdup(lst->data)))
+			return (NULL);
+		lst = lst->next;
+		i++;
+	}
+	return (tab_env);
+}
 
 char		**forkator_env(t_env_list *env)
 {
@@ -26,21 +45,8 @@ char		**forkator_env(t_env_list *env)
 		lst = lst->next;
 		i++;
 	}
-	lst = env;
 	if (i > 0)
-	{
-		if (!(tab_env = ft_memalloc(sizeof(char*) * (i + 1))))
-			return (NULL);
-		tab_env[i] = 0;
-		i = 0;
-		while (lst && lst->data)
-		{
-			if (!(tab_env[i] = ft_strdup(lst->data)))
-				return (NULL);
-			lst = lst->next;
-			i++;
-		}
-	}
+		tab_env = forkator_create_env(env, tab_env, i);
 	return (tab_env);
 }
 

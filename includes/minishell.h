@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/21 16:50:59 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/21 18:15:22 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char			*cmd_parser_replace(char *s, t_env_list *env);
 /*
 **			exec_access.c
 */
-void			exec_free_paths(char **paths);
+int				exec_free_paths(char **paths);
 int				exec_chdmod(char *path);
 char			**exec_get_paths(t_env_list *env);
 int				exec_direct_access(t_cmd *cmd, t_env_list *env);
@@ -98,7 +98,6 @@ int				forkator(t_cmd *cmd, t_env_list *env, char *path);
 /*
 **			builtin_search.c
 */
-void			builtin_initiate_tab(int (**pf)(t_cmd*, t_env_list**));
 int				builtin_search(t_cmd *cmd, t_env_list **env);
 
 /*

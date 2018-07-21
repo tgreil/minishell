@@ -6,13 +6,13 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:00:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/21 15:54:23 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 18:16:12 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		exec_free_paths(char **paths)
+int			exec_free_paths(char **paths)
 {
 	int i;
 
@@ -20,6 +20,7 @@ void		exec_free_paths(char **paths)
 	while (paths[i])
 		free(paths[i++]);
 	free(paths);
+	return (EXIT_SUCCESS);
 }
 
 int			exec_chmod(char *path)
@@ -66,38 +67,34 @@ int			exec_direct_access(t_cmd *cmd, t_env_list *env)
 			|| !access(cmd->arg[0], stat.st_gid))
 			&& exec_chmod(cmd->arg[0]))
 		return (forkator(cmd, env, cmd->arg[0]));
-	return (error("minishell:", "command not found:", cmd->arg[0], EXIT_SUCCESS));
+	return (error("minishell: ", "command not found:", cmd->arg[0], 0));
 }
 
 int			exec_access(t_cmd *cmd, t_env_list **env)
 {
-	char			path_exec[PATH_MAX];
+	char			path_exe[PATH_MAX];
 	char			**paths;
 	int				i;
 	struct stat		stat;
 
-	i = 0;
+	i = -1;
 	paths = exec_get_paths(*env);
-	while (paths && paths[i])
+	while (paths && paths[++i])
 	{
 		if ((ft_strlen(paths[i]) + ft_strlen(cmd->arg[0]) + 1) < PATH_MAX)
 		{
-			ft_strcpy(path_exec, paths[i]);
-			ft_strcat(path_exec, "/");
-			ft_strcat(path_exec, cmd->arg[0]);
-			lstat(path_exec, &stat);
-			if ((!access(path_exec, stat.st_uid)
-					|| !access(path_exec, stat.st_gid))
-					&& exec_chmod(path_exec))
+			ft_strcpy(path_exe, paths[i]);
+			ft_strcat(path_exe, "/");
+			ft_strcat(path_exe, cmd->arg[0]);
+			lstat(path_exe, &stat);
+			if ((!access(path_exe, stat.st_uid) || !access(path_exe,
+							stat.st_gid)) && exec_chmod(path_exe))
 			{
-				forkator(cmd, *env, path_exec);
-				exec_free_paths(paths);
-				return (EXIT_SUCCESS);
+				forkator(cmd, *env, path_exe);
+				return (exec_free_paths(paths));
 			}
 		}
-		i++;
 	}
-	if (paths)
-		exec_free_paths(paths);
+	i = (paths ? exec_free_paths(paths) : 0);
 	return (exec_direct_access(cmd, *env));
 }
