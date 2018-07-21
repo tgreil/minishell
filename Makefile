@@ -6,24 +6,25 @@
 #    By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 16:24:07 by tgreil            #+#    #+#              #
-#*   Updated: 2018/07/20 16:46:40 by                  ###   ########.fr       *#
+#*   Updated: 2018/07/21 15:38:47 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	main.c					\
+			error.c					\
 			env.c					\
 			prompt.c				\
 			cmd_exec.c 				\
 			cmd_parser.c			\
 			cmd_parser_replace.c	\
-			exec_cmd.c 				\
-			forkator.c 				\
+			exec_cmd.c				\
+			forkator.c				\
 			builtin_search.c		\
 			builtin_echo.c			\
-			builtin_env.c 			\
+			builtin_env.c			\
 			builtin_setenv.c		\
-			builtin_unsetenv.c 		\
-			builtin_cd.c 			\
+			builtin_unsetenv.c		\
+			builtin_cd.c			\
 			builtin_cd_envmodifier.c
 
 OBJS	= $(addprefix srcs/, $(SRCS:.c=.o))
