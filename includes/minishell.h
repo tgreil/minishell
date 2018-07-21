@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/21 15:35:15 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 16:50:59 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define EXIT_SUCCESS	0
 # define E_SUC			EXIT_SUCCESS
 # define EXIT_EXIT		1
+# define E_EX			EXIT_EXIT
 # define EXIT_ERROR		-1
 # define CMD_EXIT		"exit"
 
@@ -64,7 +65,7 @@ void			prompt_print();
 **			cmd_exec.c
 */
 char			cmd_parser_split_end(char **arg, char *line, int *i);
-int				cmd_parser_split_increment(char *line, int *i);
+int				cmd_parser_split_increment(char *line, int *i, char **arg);
 int				cmd_parser_split(char **arg, char *line, int *i);
 t_cmd			*cmd_parser(char *line);
 int				cmd_exec(t_env_list **env, char *line);
@@ -131,18 +132,15 @@ int				builtin_unsetenv(t_cmd *cmd, t_env_list **env);
 **			builtin_cd.c
 */
 int				builtin_cd_reverse(t_env_list **env, char *current_dir);
-int				builtin_cd_absolute_path(t_cmd *cmd, t_env_list **env,
-		char *current_dir);
+int				builtin_cd_absolute_path(t_cmd *c, t_env_list **e, char *c_dir);
 int				builtin_cd_home(t_env_list **env, char *current_dir);
 int				builtin_cd(t_cmd *cmd, t_env_list **env);
 
 /*
 **			builtin_cd_envmodifier.c
 */
-int				builtin_cd_create_env(t_env_list **env, char *envname,
-		char *path);
-int				builtin_cd_change_env(t_env_list **env, char *name,
-		char *path);
+int				builtin_cd_create_env(t_env_list **e, char *env_n, char *path);
+int				builtin_cd_change_env(t_env_list **env, char *name, char *path);
 
 /*
 **			error.c

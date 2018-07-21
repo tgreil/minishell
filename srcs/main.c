@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/20 13:02:41 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 16:47:43 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main(int ac, char **av, char **env)
 	while (my_bool == TRUE)
 	{
 		prompt_print();
-		if (get_next_line(0, &line) > 0 && cmd_exec(&env_list, line) == E_SUC)
+		if (get_next_line(0, &line) > 0 && cmd_exec(&env_list, line) != E_EX)
 			free(line);
 		else
 			my_bool = FALSE;
