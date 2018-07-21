@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/20 13:10:26 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/20 16:50:43 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 15:22:59 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int			builtin_cd(t_cmd *cmd, t_env_list **env)
 	char		*ptr;
 
 	if (!(ptr = getcwd(current_dir, PATH_MAX)))
-		return (EXIT_SUCCESS); //mettre un message d'erreur? exit?
+		return (EXIT_SUCCESS); //mettre un message d'erreur? exit? NOPE
 	else if (!cmd->arg[1])
 		return (builtin_cd_home(env, current_dir));
 	else if (cmd->arg[1][0] == '/')
