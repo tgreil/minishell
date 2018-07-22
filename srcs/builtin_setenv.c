@@ -6,11 +6,27 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 18:59:17 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/19 15:49:43 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/22 15:56:44 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int			builtin_setenv_free(t_env_list *lst)
+{
+	free(lst->data);
+	return (0);
+}
+
+int			builtin_setenv_usage(t_cmd *cmd, int i)
+{
+	if (cmd->arg[i])
+		ft_printf("!2!setenv: illegal option %s\nusage: setenv [name=value]\n",
+			cmd->arg[i]);
+	else
+		ft_printf("!2!usage: setenv [name=value]\n");
+	return (EXIT_SUCCESS);
+}
 
 size_t		builtin_setenv_strlen_envname(char *env)
 {
@@ -45,24 +61,24 @@ int			builtin_setenv(t_cmd *cmd, t_env_list **env)
 	size_t			len;
 
 	i = 1;
+	if (!cmd->arg[i])
+		return (builtin_setenv_usage(cmd, i));
 	while (cmd->arg[i] && ft_strchr(cmd->arg[i], '=') && cmd->arg[i][0] != '=')
 	{
 		lst = *env;
 		len = builtin_setenv_strlen_envname(cmd->arg[i]);
 		while (lst && ft_strncmp(cmd->arg[i], lst->data, len))
 			lst = lst->next;
-		if (lst)
+		if (lst && !builtin_setenv_free(lst))
 		{
-			free(lst->data);
 			if (!(lst->data = ft_strdup(cmd->arg[i])))
 				return (EXIT_ERROR);
 		}
-		else
-		{
-			if (!(builtin_setenv_new_env(cmd->arg[i], *env)))
-				return (EXIT_ERROR);
-		}
+		else if (!(builtin_setenv_new_env(cmd->arg[i], *env)))
+			return (EXIT_ERROR);
 		i++;
 	}
+	if (cmd->arg[i] && (!ft_strchr(cmd->arg[i], '=') || cmd->arg[i][0] == '='))
+		return (builtin_setenv_usage(cmd, i));
 	return (EXIT_SUCCESS);
 }

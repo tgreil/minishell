@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/22 11:22:00 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/22 15:55:29 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int				builtin_env(t_cmd *cmd, t_env_list **env);
 /*
 **			builtin_setenv.c
 */
+int				builtin_setenv_free(t_env_list *lst);
+int				builtin_setenv_usage(t_cmd *cmd, int i);
 size_t			builtin_setenv_strlen_envname(char *env);
 t_env_list		*builtin_setenv_new_env(char *new_env, t_env_list *env);
 int				builtin_setenv(t_cmd *cmd, t_env_list **env);
@@ -125,7 +127,9 @@ int				builtin_setenv(t_cmd *cmd, t_env_list **env);
 /*
 **			builtin_unsetenv.c
 */
-void			builtin_unsetenv_remove(t_env_list *current, t_env_list *prev);
+int				builtin_unsetenv_usage(t_cmd *cmd, int i);
+void			builtin_unsetenv_remove(t_env_list *current, t_env_list *prev,
+		t_env_list **env);
 int				builtin_unsetenv(t_cmd *cmd, t_env_list **env);
 
 /*
