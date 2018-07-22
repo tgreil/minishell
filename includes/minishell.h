@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/21 18:15:22 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/22 11:22:00 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <signal.h>
 # include "libft.h"
 
 # define EXIT_SUCCESS	0
