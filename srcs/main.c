@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/22 15:03:30 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/22 17:29:33 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		minishell_exiter(t_env_list *env, int status)
 	return (status);
 }
 
-void	control_c_handler()
+void	control_c_handler(int nbr)
 {
-	ft_printf("\n");
+	ft_printf("\n", nbr);
 	prompt_print();
 }
 
