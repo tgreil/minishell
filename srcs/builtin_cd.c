@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/20 13:10:26 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/21 17:49:48 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 18:36:33 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			builtin_cd_relative_path(t_cmd *cmd, t_env_list **env,
 		if ((builtin_cd_change_env(env, "PWD=", current_dir)) < 0)
 			return (EXIT_ERROR);
 	}
+	else
+		return (error("cd: ", "no such file or directory:", cmd->arg[1], 0));
 	return (EXIT_SUCCESS);
 }
 
@@ -44,7 +46,7 @@ int			builtin_cd_reverse(t_env_list **env, char *current_dir)
 	while (lst && lst->data && ft_strncmp(lst->data, "OLDPWD=", 7))
 		lst = lst->next;
 	if (!lst || !lst->data)
-		return (error("cd:", " OLDPWD", "not set", EXIT_SUCCESS));
+		return (error("cd: ", "OLDPWD", "not set", EXIT_SUCCESS));
 	else
 	{
 		if (!chdir(&lst->data[7]))

@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:00:36 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/21 18:16:12 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/21 18:38:07 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int			exec_direct_access(t_cmd *cmd, t_env_list *env)
 	struct stat		stat;
 
 	(void)env;
+	ft_bzero(&stat, sizeof(struct stat));
 	lstat(cmd->arg[0], &stat);
 	if ((!access(cmd->arg[0], stat.st_uid)
 			|| !access(cmd->arg[0], stat.st_gid))
@@ -83,9 +84,9 @@ int			exec_access(t_cmd *cmd, t_env_list **env)
 	{
 		if ((ft_strlen(paths[i]) + ft_strlen(cmd->arg[0]) + 1) < PATH_MAX)
 		{
-			ft_strcpy(path_exe, paths[i]);
-			ft_strcat(path_exe, "/");
+			ft_strcat(ft_strcpy(path_exe, paths[i]), "/");
 			ft_strcat(path_exe, cmd->arg[0]);
+			ft_bzero(&stat, sizeof(struct stat));
 			lstat(path_exe, &stat);
 			if ((!access(path_exe, stat.st_uid) || !access(path_exe,
 							stat.st_gid)) && exec_chmod(path_exe))

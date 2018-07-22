@@ -6,7 +6,7 @@
 /*   By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 15:31:13 by tgreil            #+#    #+#             */
-/*   Updated: 2018/07/19 14:15:45 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/22 10:45:41 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		cmd_parser_interpret_quot(char *s)
 		while (s[i + diff] == '"' && (!(i + diff) || s[i + diff - 1] != '\\'))
 			diff++;
 		s[i] = s[i + diff];
-		i++;
+		if (s[i + diff])
+			i++;
 	}
 	s[i] = '\0';
 	return (EXIT_SUCCESS);
