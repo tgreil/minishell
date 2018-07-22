@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/22 11:36:38 by tgreil           ###   ########.fr       */
+/*   Updated: 2018/07/22 15:00:08 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		minishell_exiter(t_env_list *env, int status)
 
 void	control_c_handler()
 {
+	ft_printf("\n");
+	prompt_print();
 }
 
 int		main(int ac, char **av, char **env)
