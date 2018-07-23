@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/23 12:23:18 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/23 12:33:21 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int				main(int ac, char **av, char **env);
 /*
 **			env.c
 */
+t_env_list		*env_shlvl(t_env_list *env, char *data);
 char			*env_get(t_env_list *env, char *s);
 t_env_list		*env_init(char **env);
 void			env_print(t_env_list *env);
