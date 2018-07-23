@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/22 15:55:29 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/23 12:23:18 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,23 @@
 # define EXIT_ERROR		-1
 # define CMD_EXIT		"exit"
 
-typedef struct			s_env_list
+typedef struct	s_env_list
 {
 	char				*data;
 	struct s_env_list	*next;
-}						t_env_list;
+}				t_env_list;
 
-typedef struct			s_cmd
+typedef struct	s_cmd
 {
 	char				**arg;
 	struct s_cmd		*next;
-}						t_cmd;
+}				t_cmd;
 
-typedef struct			s_builtin
+typedef struct	s_builtin
 {
 	char				*name;
 	int					pos;
-}						t_builtin;
+}				t_builtin;
 
 /*
 **			main.c
