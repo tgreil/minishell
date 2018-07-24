@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/23 12:54:03 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/07/24 15:41:58 by tgreil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_env_list		*env_shlvl(t_env_list *env, char *data)
 		return (NULL);
 	while (nb_tmp[i])
 		i++;
-	if (!(env->data = ft_memalloc(6 + i)))
+	if (!(env->data = ft_memalloc(6 + i + 1)))
 		return (NULL);
 	ft_strcpy(env->data, "SHLVL=");
 	ft_strcat(env->data, nb_tmp);
