@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/08/03 14:10:14 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/08/03 14:54:43 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,6 @@ int				builtin_cd_change_env(t_env_list **env, char *name, char *path);
 **			error.c
 */
 int				error(char *prog, char *msg, char *cmd, int ret);
+t_cmd			*free_cmd_error(t_cmd *cmd);
 
 #endif
