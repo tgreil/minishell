@@ -6,7 +6,7 @@
 /*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/23 12:33:21 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/08/03 14:10:14 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int				builtin_env(t_cmd *cmd, t_env_list **env);
 int				builtin_setenv_free(t_env_list *lst);
 int				builtin_setenv_usage(t_cmd *cmd, int i);
 size_t			builtin_setenv_strlen_envname(char *env);
-t_env_list		*builtin_setenv_new_env(char *new_env, t_env_list *env);
+t_env_list		*builtin_setenv_new_env(char *new_env, t_env_list **env);
 int				builtin_setenv(t_cmd *cmd, t_env_list **env);
 
 /*
