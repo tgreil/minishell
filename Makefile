@@ -6,7 +6,7 @@
 #    By: tgreil <tgreil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 16:24:07 by tgreil            #+#    #+#              #
-#*   Updated: 2018/08/03 14:02:45 by                  ###   ########.fr       *#
+#*   Updated: 2018/08/03 14:16:41 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ LDFLAGS	=  $(LIBS)
 $(PROJECT):	$(LIB) $(NAME)
 
 $(NAME): 	$(OBJS) Makefile
-	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) -fsanitize=address
+	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 $(LIB):
 	$(MAKELIB)
