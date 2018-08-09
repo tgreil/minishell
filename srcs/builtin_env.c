@@ -6,7 +6,7 @@
 /*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 14:47:14 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/07/21 15:51:43 by piliegeo         ###   ########.fr       */
+/*   Updated: 2018/08/03 15:57:18 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_cmd		*builtin_create_cmd_tmp(t_cmd *cmd)
 		i++;
 	while (cmd->arg[i + j])
 		j++;
-	if (!(new->arg = ft_memalloc(sizeof(char*) * j + 1)))
+	if (!(new->arg = ft_memalloc(sizeof(char*) * (j + 1))))
 		return (NULL);
 	new->arg[j] = NULL;
 	j = 0;
@@ -71,7 +71,7 @@ char		**builtin_create_env_tmp(t_cmd *cmd)
 		i++;
 	if (!(env = ft_memalloc(sizeof(char*) * i - 1)))
 		return (NULL);
-	env[i - 1] = NULL;
+	env[i - 2] = NULL;
 	i = 2;
 	while (cmd->arg[i] && ft_strchr(cmd->arg[i], '=') && cmd->arg[i][0] != '=')
 	{
