@@ -37,7 +37,7 @@ NAME	= minishell
 
 RM	= rm -f
 
-CC	= gcc
+CC	= cc
 
 MAKELIB	= make -C libft/
 
