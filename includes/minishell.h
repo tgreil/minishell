@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/23 12:33:21 by piliegeo         ###   ########.fr       */
+/*   Created: 2018/08/03 14:58:13 by piliegeo          #+#    #+#             */
+/*   Updated: 2018/08/03 14:58:14 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int				builtin_env(t_cmd *cmd, t_env_list **env);
 int				builtin_setenv_free(t_env_list *lst);
 int				builtin_setenv_usage(t_cmd *cmd, int i);
 size_t			builtin_setenv_strlen_envname(char *env);
-t_env_list		*builtin_setenv_new_env(char *new_env, t_env_list *env);
+t_env_list		*builtin_setenv_new_env(char *new_env, t_env_list **env);
 int				builtin_setenv(t_cmd *cmd, t_env_list **env);
 
 /*
@@ -151,5 +151,6 @@ int				builtin_cd_change_env(t_env_list **env, char *name, char *path);
 **			error.c
 */
 int				error(char *prog, char *msg, char *cmd, int ret);
+t_cmd			*free_cmd_error(t_cmd *cmd);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/24 18:08:45 by tgreil           ###   ########.fr       */
+/*   Created: 2018/08/03 14:58:54 by piliegeo          #+#    #+#             */
+/*   Updated: 2018/08/03 14:58:58 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_cmd		*cmd_parser(char *line)
 	new->next = NULL;
 	new->arg = NULL;
 	if ((size = cmd_parser_split(NULL, line, &i)) <= 0)
-		return (NULL);
+		return (free_cmd_error(new));
 	if (!(new->arg = malloc(sizeof(char *) * (size + 1))))
 		return (NULL);
 	new->arg[size] = NULL;

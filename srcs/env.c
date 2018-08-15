@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: t <t@student.42.fr>                        +#+  +:+       +#+        */
+/*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/11 15:50:40 by t                 #+#    #+#             */
-/*   Updated: 2018/07/24 15:41:58 by tgreil           ###   ########.fr       */
+/*   Created: 2018/08/03 14:59:20 by piliegeo          #+#    #+#             */
+/*   Updated: 2018/08/03 15:57:36 by piliegeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_env_list		*env_init(char **env)
 {
 	t_env_list	*new;
 
+	if (!env)
+		return (NULL);
 	if (!(new = ft_memalloc(sizeof(t_env_list))))
 		return (NULL);
 	if (*env && ft_strncmp(*env, "SHLVL=", 6)
@@ -58,7 +60,7 @@ t_env_list		*env_init(char **env)
 		if (!(env_shlvl(new, *env)))
 			return (NULL);
 	}
-	if (*(env + 1))
+	if (*env && *(env + 1))
 	{
 		if (!(new->next = env_init(env + 1)))
 			return (NULL);
